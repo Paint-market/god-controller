@@ -1,0 +1,32 @@
+{
+  "name": "god-controller",
+  "version": "1.0.0",
+  "description": "all hail",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephquested/god-controller.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephquested/god-controller/issues"
+  },
+  "homepage": "https://github.com/josephquested/god-controller#readme",
+  "dependencies": {
+    "bluebird": "^3.3.4",
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "lodash": "^4.6.1",
+    "nodemon": "^1.9.1",
+    "superagent": "^1.8.0",
+    "superagent-as-promised": "^3.2.1",
+    "superagent-bluebird-promise": "^3.0.0"
+  }
+}
