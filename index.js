@@ -21,7 +21,7 @@ app.use(parser.json())
 app.use(cors());
 
 app.get('/', function(req, res, next){
-  res.json({msg: 'This is CORS-enabled for all origins!'});
+  res.send('welcome to God')
 });
 
 app.get('/paintings', function(appRequest, appResponse, next){
