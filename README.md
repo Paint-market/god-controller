@@ -15,8 +15,30 @@ If error, returns:
 }
 ```
 
-GET/transactions
-GET/users
+*GET/users*
+
+Will return an array of yet unspecified user objects.
+
+If error, returns:
+```js
+{
+  error: true,
+  message: "Not Found"
+}
+```
+
+*GET/transactions*
+
+Will return an array of yet unspecified transaction objects.
+
+If error, returns:
+```js
+{
+  error: true,
+  message: "Not Found"
+}
+```
+
 GET/users/:id
 GET/users/:id/paintings
 POST/paintings
