@@ -49,7 +49,7 @@ module.exports = function (app) {
         }
       })
       .catch(function(err) {
-        appResponse.json({error: true, message: err.message})
+        appResponse.json({error: true, message: 'hi nick'})
       })
     })
   }

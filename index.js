@@ -64,9 +64,9 @@ const usersURL = {
 // RETURN A USER OBJECT WITH EMAIL QUERY
 app.get('/users', function(appRequest, appResponse, next){
   var url = URL.format(_.extend(usersURL, {pathname: '/users'}))
-  request.get(`${url}${appRequest.query.email}`)
+  request.get(`${url}?email=${appRequest.query.email}`)
     .then(function (res) {
-      if (!res.body.users.length === 0) {
+      if (!res.body.users[0] === null) {
         appResponse.json(res.body)
       } else {
         appResponse.json(false)
@@ -79,11 +79,11 @@ app.get('/users', function(appRequest, appResponse, next){
 
 // REQUEST TO SIGN UP
 app.post('/users/signup', function(appRequest, appResponse, next){
-  console.log('SIGN IN ATTEMPT')
+  console.log(`SIGN IN ATTEMPT from email: ${appRequest.body.userEmail}`)
   var url = URL.format(_.extend(usersURL, {pathname: '/users'}))
-  request.get(`${url}${appRequest.body.email}`)
+  request.get(`${url}?email=${appRequest.body.userEmail}`)
     .then(function (res) {
-      if (!res.body.users.length === 0) {
+      if (!res.body.users[0] === null) {
         request.post(url)
           .send(appRequest.body)
           .then(function (res) {
@@ -103,7 +103,7 @@ app.get('/users/signin', function(appRequest, appResponse, next){
   var url = URL.format(_.extend(usersURL, {pathname: '/users'}))
   request.get(`${url}${appRequest.query.email}`)
     .then(function (res) {
-      if (!res.body.users.length === 0) {
+      if (!res.body.users[0] === null) {
           appResponse.json({user: userID})
       } else {
         appResponse.json({user: false})
