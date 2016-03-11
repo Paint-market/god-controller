@@ -39,6 +39,28 @@ If error, returns:
 }
 ```
 
+**POST/signup**
+GET/users:email
+if (res === {}) {
+  POST/users
+  .send(req.body)
+  .then(
+    appRes.send({emailExists: false})
+    )
+} else {
+  appRes.send({emailExists: true})
+}
+
+**GET/signin**
+GET/users:email
+if (res === {}) {
+  appRes.send({emailExists: false})
+  )
+} else {
+  appRes.send({emailExists: true})
+}
+
+
 GET/users/:id
 GET/users/:id/paintings
 POST/paintings
