@@ -69,7 +69,23 @@ app.get('/users', function(appRequest, appResponse, next){
       if (!res.body.users[0] === null) {
         appResponse.json(res.body)
       } else {
-        appResponse.json(false)
+        appResponse.json({ users: false })
+      }
+    })
+    .catch(function(err) {
+      appResponse.json({error: true, message: err.message})
+    })
+})
+
+app.get('/users/:id', function(appRequest, appResponse, next){
+  var url = URL.format(_.extend(usersURL, {pathname: '/users'}))
+  request.get(`${url}/${appRequest.params.id}`)
+    .then(function (res) {
+      console.log('res', res.body)
+      if (res.body.users[0]) {
+        appResponse.json(res.body.users[0])
+      } else {
+        appResponse.json({ users: false })
       }
     })
     .catch(function(err) {
@@ -81,9 +97,13 @@ app.get('/users', function(appRequest, appResponse, next){
 app.post('/users/signup', function(appRequest, appResponse, next){
   console.log(`SIGN IN ATTEMPT from email: ${appRequest.body.userEmail}`)
   var url = URL.format(_.extend(usersURL, {pathname: '/users'}))
+  console.log('url', url)
+  // users?email=maninblack@nashville.com
+  console.log(`PATH:  ${url}?email=${appRequest.body.userEmail}`)
   request.get(`${url}?email=${appRequest.body.userEmail}`)
     .then(function (res) {
-      if (!res.body.users[0] === null) {
+      console.log('HOWARD RES', res.body.users)
+      if (res.body.users[0]) {
         request.post(url)
           .send(appRequest.body)
           .then(function (res) {
